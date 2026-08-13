@@ -1,8 +1,11 @@
 import pandas as pd
 import io
+from core.exceptions import EmptyCSVError
 
 def read_csv_from_upload(file_bytes: bytes) -> pd.DataFrame:
     df = pd.read_csv(io.BytesIO(file_bytes))
+    if df.empty:
+        raise EmptyCSVError
     return df
 
 def get_summary_stats(df: pd.DataFrame) -> dict:
