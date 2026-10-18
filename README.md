@@ -16,10 +16,10 @@ for real-world use.
 - Upload any CSV and get instant summary statistics (count, mean, std, min, max, quartiles) for every numeric column
 - Auto-generated histogram chart, returned as base64 — no separate download step
 - Chart column is selectable via a query parameter, defaulting to the first numeric column
-- Handles missing/invalid data gracefully instead of crashing
+- Handles missing/invalid data gracefully instead of crashing — empty files, malformed CSVs and non-UTF-8 files get a clear `400` error, and latin-1 files (common from older Excel exports) are read automatically
 - File type validation with clear error messages
 - Interactive, self-documenting API via Swagger UI
-- Tested with `pytest`
+- Tested with `pytest` — 10 tests covering valid files and every error case
 
 ---
 
@@ -157,14 +157,15 @@ curl -X POST "http://127.0.0.1:8000/api/v1/analysis/analyze?column=quantity" \
 
 Built for small businesses and analysts who need quick statistical insights from
 raw CSV data without opening Excel or writing custom analysis scripts — upload a
-file, get numbers and a chart back in seconds..
+file, get numbers and a chart back in seconds.
 
 ---
 
 ## Notes
 
 - Chart column can be specified via `?column=column_name` in the request; defaults to the first numeric column if omitted
-- Non-CSV files are rejected with a `400` error
+- Non-CSV files are rejected with a `400` error (the `.csv` check ignores upper/lower case)
+- If the requested column doesn't exist or isn't numeric, the stats still come back with `chart: null` and a `message` explaining why
 - All processing happens in-memory — no files are written to disk
 
 ---

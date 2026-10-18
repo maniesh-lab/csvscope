@@ -1,12 +1,32 @@
-import pandas as pd
 import io
-from core.exceptions import EmptyCSVError
+
+import pandas as pd
+
+from core.exceptions import EmptyCSVError, InvalidCSVError
+
 
 def read_csv_from_upload(file_bytes: bytes) -> pd.DataFrame:
-    df = pd.read_csv(io.BytesIO(file_bytes))
+    if not file_bytes.strip():
+        raise EmptyCSVError  # a 0-byte (or whitespace-only) file
+
+    # Try UTF-8 first (utf-8-sig also strips the invisible "BOM" mark Excel
+    # adds). If that fails, fall back to latin-1, the other common encoding
+    # for CSVs exported from older spreadsheet programs.
+    for encoding in ("utf-8-sig", "latin-1"):
+        try:
+            df = pd.read_csv(io.BytesIO(file_bytes), encoding=encoding)
+            break
+        except UnicodeDecodeError:
+            continue
+        except pd.errors.EmptyDataError:
+            raise EmptyCSVError
+        except pd.errors.ParserError:
+            raise InvalidCSVError
+
     if df.empty:
-        raise EmptyCSVError
+        raise EmptyCSVError  # headers only, no data rows
     return df
+
 
 def get_summary_stats(df: pd.DataFrame) -> dict:
     stats_df = df.describe()   #calculate mean, std, min, max, etc. per numeric column
