@@ -18,7 +18,7 @@ for real-world use.
 - Upload any CSV and get instant summary statistics (count, mean, std, min, max, quartiles) for every numeric column
 - Auto-generated histogram chart, returned as base64 — no separate download step
 - Chart column is selectable via a query parameter, defaulting to the first numeric column
-- Handles missing/invalid data gracefully instead of crashing — empty files, malformed CSVs and non-UTF-8 files get a clear `400` error, and latin-1 files (common from older Excel exports) are read automatically
+- Handles missing/invalid data gracefully instead of crashing — empty files and malformed CSVs get a clear `400` error, and files that aren't UTF-8 are read as latin-1 (common from older Excel exports)
 - File type validation with clear error messages
 - Interactive, self-documenting API via Swagger UI
 - Tested with `pytest` — 10 tests covering valid files and every error case
