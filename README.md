@@ -157,6 +157,8 @@ Shortened: the real response has stats for every number column (here `price`,
 | Tool | Purpose |
 |---|---|
 | `fastapi` | API framework |
+| `uvicorn` | Runs the server |
+| `python-multipart` | Lets FastAPI receive file uploads |
 | `pandas` | CSV parsing and statistics |
 | `matplotlib` | Chart generation |
 | `pydantic` | Response validation and schema |
