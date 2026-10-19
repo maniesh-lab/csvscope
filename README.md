@@ -55,10 +55,16 @@ csvscope/
 │   └── test_analysis.py
 │
 ├── screenshots/
+│   ├── generated-chart.png
+│   ├── sample-response.png
+│   └── swagger-docs.png
+│
+├── .github/workflows/ci.yml   # lint + tests on every push
 ├── .gitignore
 ├── LICENSE
 ├── main.py
 ├── requirements.txt
+├── ruff.toml                  # lint rules
 └── README.md
 ```
 
