@@ -159,6 +159,7 @@ curl -X POST "http://127.0.0.1:8000/api/v1/analysis/analyze?column=quantity" \
 | `matplotlib` | Chart generation |
 | `pydantic` | Response validation and schema |
 | `pytest` | Testing |
+| `ruff` | Lint check, run with the tests by GitHub Actions on every push |
 
 ---
 
