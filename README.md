@@ -2,14 +2,12 @@
 
 [![CI](https://github.com/maniesh-lab/csvscope/actions/workflows/ci.yml/badge.svg)](https://github.com/maniesh-lab/csvscope/actions/workflows/ci.yml)
 
-A FastAPI backend that analyzes uploaded CSV files and returns summary statistics
-and an auto-generated chart in a single JSON response — even when the file
-contains missing or invalid values.
+A FastAPI API: upload a CSV and get back summary statistics for every number
+column plus a histogram chart, all in one JSON response. Empty or broken files
+get a clear `400` error instead of a crash.
 
-Built to demonstrate backend and data analysis skills together: FastAPI for the
-API layer, pandas for the analysis engine, and matplotlib for chart generation —
-structured with a clean, modular architecture (routers/services/models) suitable
-for real-world use.
+The code is split into routers, services and models, so the API layer, the
+pandas analysis and the matplotlib charts each live in their own place.
 
 ---
 
