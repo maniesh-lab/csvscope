@@ -122,6 +122,9 @@ curl -X POST "http://127.0.0.1:8000/api/v1/analysis/analyze?column=quantity" \
 
 ## Example Response
 
+Shortened: the real response has stats for every number column (here `price`,
+`quantity` and `rating`), not just `price`.
+
 ```json
 {
   "filename": "sample.csv",
@@ -138,7 +141,8 @@ curl -X POST "http://127.0.0.1:8000/api/v1/analysis/analyze?column=quantity" \
       "max": 249.99
     }
   },
-  "chart": "iVBORw0KGgoAAAANSUhEUgA..."
+  "chart": "iVBORw0KGgoAAAANSUhEUgA...",
+  "message": null
 }
 ```
 
