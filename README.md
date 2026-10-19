@@ -177,6 +177,7 @@ file, get numbers and a chart back in seconds.
 - Non-CSV files are rejected with a `400` error (the `.csv` check ignores upper/lower case)
 - If the requested column doesn't exist or isn't numeric, the stats still come back with `chart: null` and a `message` explaining why
 - All processing happens in-memory — no files are written to disk
+- Files that aren't UTF-8 are read as latin-1. That's fine for real latin-1 files, but files in other encodings (like UTF-16 or Shift-JIS) aren't rejected: they still come back `200`, with garbled column names
 
 ---
 
