@@ -1,5 +1,7 @@
 # csvscope
 
+[![CI](https://github.com/maniesh-lab/csvscope/actions/workflows/ci.yml/badge.svg)](https://github.com/maniesh-lab/csvscope/actions/workflows/ci.yml)
+
 A FastAPI backend that analyzes uploaded CSV files and returns summary statistics
 and an auto-generated chart in a single JSON response — even when the file
 contains missing or invalid values.
