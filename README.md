@@ -188,9 +188,10 @@ file, get numbers and a chart back in seconds.
 ```bash
 pip install -r requirements-test.txt
 pytest
+ruff check .
 ```
 
-GitHub Actions runs the same tests, plus a `ruff` lint check, on Python 3.10–3.13 for every push.
+GitHub Actions runs the same tests and lint check on Python 3.10–3.13 for every push.
 
 ---
 
