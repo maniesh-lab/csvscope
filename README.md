@@ -66,6 +66,7 @@ csvscope/
 ├── LICENSE
 ├── main.py
 ├── requirements.txt
+├── requirements-test.txt      # + pytest, httpx and ruff for tests and lint
 ├── ruff.toml                  # lint rules
 └── README.md
 ```
@@ -181,6 +182,7 @@ file, get numbers and a chart back in seconds.
 ## Running Tests
 
 ```bash
+pip install -r requirements-test.txt
 pytest
 ```
 

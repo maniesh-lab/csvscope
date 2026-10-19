@@ -1,0 +1,4 @@
+# What the tests and lint check need, on top of requirements.txt
+pytest
+httpx
+ruff
