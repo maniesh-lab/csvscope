@@ -74,3 +74,10 @@ def test_numeric_column_gets_chart():
     body = post_csv("data.csv", b"name,age\nbob,3\nann,4\n", column="age").json()
     assert body["chart"]
     assert body["message"] is None
+
+
+def test_text_only_file_gets_empty_stats():
+    body = post_csv("names.csv", b"name,city\nbob,pokhara\nann,kathmandu\n").json()
+    assert body["stats"] == {}
+    assert body["chart"] is None
+    assert "No numeric columns" in body["message"]

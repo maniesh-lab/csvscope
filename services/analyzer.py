@@ -29,7 +29,11 @@ def read_csv_from_upload(file_bytes: bytes) -> pd.DataFrame:
 
 
 def get_summary_stats(df: pd.DataFrame) -> dict:
-    stats_df = df.describe()   #calculate mean, std, min, max, etc. per numeric column
+    numeric_df = df.select_dtypes(include="number")
+    if numeric_df.empty:
+        return {}  # no number columns, so there are no stats to give
+
+    stats_df = numeric_df.describe()  # mean, std, min, max, etc. per number column
 
     # .astype(object)   -> removes strict float type so None is allowed to stick
     # .where(...)       -> replaces any NaN values with None

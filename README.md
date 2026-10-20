@@ -19,7 +19,7 @@ pandas analysis and the matplotlib charts each live in their own place.
 - Handles missing/invalid data gracefully instead of crashing — empty files and malformed CSVs get a clear `400` error, and files that aren't UTF-8 are read as latin-1 (common from older Excel exports)
 - File type validation with clear error messages
 - Interactive, self-documenting API via Swagger UI
-- Tested with `pytest` — 10 tests covering valid files and every error case
+- Tested with `pytest` — 11 tests covering valid files and every error case
 
 ---
 
@@ -180,6 +180,7 @@ file, get numbers and a chart back in seconds.
 - Chart column can be specified via `?column=column_name` in the request; defaults to the first numeric column if omitted
 - Non-CSV files are rejected with a `400` error (the `.csv` check ignores upper/lower case)
 - If the requested column doesn't exist or isn't numeric, the stats still come back with `chart: null` and a `message` explaining why
+- A file with no number columns comes back with empty `stats`, `chart: null` and a `message` saying so
 - All processing happens in-memory — no files are written to disk
 
 ---
