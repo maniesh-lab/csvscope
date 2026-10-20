@@ -103,6 +103,16 @@ uvicorn main:app --reload
 
 Visit `http://127.0.0.1:8000/docs` and upload a CSV directly in the browser.
 
+**Run the tests**
+
+```bash
+pip install -r requirements.txt -r requirements-test.txt
+pytest
+ruff check .
+```
+
+GitHub Actions runs the same tests and lint check on Python 3.10–3.13 for every push.
+
 ---
 
 ## API Docs
@@ -119,6 +129,8 @@ curl -X POST "http://127.0.0.1:8000/api/v1/analysis/analyze?column=quantity" \
   -H "Content-Type: multipart/form-data" \
   -F "file=@your_file.csv;type=text/csv"
 ```
+
+---
 
 ## Example Response
 
@@ -189,18 +201,6 @@ file, get numbers and a chart back in seconds.
 ## Known Limitations
 
 - Files that aren't UTF-8 are read as latin-1. That's fine for real latin-1 files, but files in other encodings (like UTF-16 or Shift-JIS) aren't rejected: they still come back `200`, with garbled column names
-
----
-
-## Running Tests
-
-```bash
-pip install -r requirements.txt -r requirements-test.txt
-pytest
-ruff check .
-```
-
-GitHub Actions runs the same tests and lint check on Python 3.10–3.13 for every push.
 
 ---
 
