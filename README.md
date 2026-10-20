@@ -123,7 +123,7 @@ curl -X POST "http://127.0.0.1:8000/api/v1/analysis/analyze?column=quantity" \
 ## Example Response
 
 Shortened: the real response has stats for every number column (here `price`,
-`quantity` and `rating`), not just `price`.
+`quantity` and `rating`), not just `price`, and the numbers aren't rounded.
 
 ```json
 {
@@ -163,6 +163,7 @@ Shortened: the real response has stats for every number column (here `price`,
 | `matplotlib` | Chart generation |
 | `pydantic` | Response validation and schema |
 | `pytest` | Testing |
+| `httpx` | Lets the tests call the API |
 | `ruff` | Lint check, run with the tests by GitHub Actions on every push |
 
 ---
@@ -194,7 +195,7 @@ file, get numbers and a chart back in seconds.
 ## Running Tests
 
 ```bash
-pip install -r requirements-test.txt
+pip install -r requirements.txt -r requirements-test.txt
 pytest
 ruff check .
 ```
